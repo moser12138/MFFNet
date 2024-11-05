@@ -118,56 +118,6 @@ class AttentionFusionModule(nn.Module):
 
         return fused_feat
 
-# class AttentionFusionModule(nn.Module):
-#     def __init__(self, high_res_channels, low_res_channels, group = 32):
-#         super(AttentionFusionModule, self).__init__()
-#         self.high_1 = nn.Sequential(
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, groups=group, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=1, stride=1, padding=0, bias=False),
-#         )
-#         self.high_2 = nn.Sequential(
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=3, stride=2, padding=1, bias=False),  # 下采样
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=1, stride=1, padding=0, bias=False),
-#
-#             # nn.AvgPool2d(kernel_size=3, stride=2, padding=1, ceil_mode=False)  # 下采样1/32
-#         )
-#         self.low_1 = nn.Sequential(
-#             nn.Conv2d(in_channels=low_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#         )
-#         self.low_2 = nn.Sequential(
-#             nn.Conv2d(in_channels=low_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, groups=group, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=1, stride=1, padding=0, bias=False),
-#         )
-#         self.up1 = nn.Upsample(scale_factor=2)
-#         self.up2 = nn.Upsample(scale_factor=2)
-#
-#         self.last = nn.Sequential(
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.ReLU(inplace=True),  # not shown in paper
-#         )
-#
-#     def forward(self, x_d, x_m):  #1/8,1/64
-#         xd_1 = self.high_1(x_d)
-#         xd_2 = self.high_2(x_d)
-#
-#         xm_1 = self.low_1(x_m)
-#         xm_2 = self.low_2(x_m)
-#
-#         xm_1 = self.up1(xm_1)
-#         xd = xd_1 * torch.sigmoid(xm_1)
-#
-#         xm = xd_2 * torch.sigmoid(xm_2)
-#
-#         xm = self.up2(xm)
-#
-#         out = self.last(xd + xm)
-#         return out
-
 # 多分支融合
 class MutiFusion(nn.Module):
     def __init__(self, h_channels, m_channels, l_channels):
@@ -177,37 +127,28 @@ class MutiFusion(nn.Module):
             nn.Conv2d(in_channels=h_channels, out_channels=m_channels, kernel_size=3, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(m_channels),
         )
-        # self.low_modify1 = nn.Conv2d(in_channels=2 * m_channels, out_channels=m_channels, kernel_size=1, stride=1, bias=False)
         self.low_2 = nn.Sequential(
             nn.Conv2d(in_channels=m_channels, out_channels=l_channels, kernel_size=3, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(l_channels),
         )
-        # self.low_modify2 = nn.Conv2d(in_channels=2 * l_channels, out_channels=l_channels, kernel_size=1, stride=1, bias=False)
-
 
         self.mid_1 = nn.Sequential(
             nn.Conv2d(in_channels=h_channels, out_channels=m_channels, kernel_size=3, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(m_channels),
         )
-        # self.mid_modify1 = nn.Conv2d(in_channels=2 * m_channels, out_channels=m_channels, kernel_size=1, stride=1, bias=False)
         self.mid_2 = nn.Sequential(
             nn.Conv2d(in_channels=l_channels, out_channels=m_channels, kernel_size=1, stride=1, bias=False),
             nn.BatchNorm2d(m_channels),
         )
-        # self.mid_modify2 = nn.Conv2d(in_channels=2 * m_channels, out_channels=m_channels, kernel_size=1, stride=1, bias=False)
-
 
         self.high_1 = nn.Sequential(
             nn.Conv2d(in_channels=l_channels, out_channels=m_channels, kernel_size=1, stride=1, bias=False),
             nn.BatchNorm2d(m_channels),
         )
-        # self.high_modify1 = nn.Conv2d(in_channels=2 * m_channels, out_channels=m_channels, kernel_size=1, stride=1, bias=False)
         self.high_2 = nn.Sequential(
             nn.Conv2d(in_channels=m_channels, out_channels=h_channels, kernel_size=1, stride=1, bias=False),
             nn.BatchNorm2d(h_channels),
         )
-        # self.high_modify2 = nn.Conv2d(in_channels=2 * h_channels, out_channels=h_channels, kernel_size=1, stride=1, bias=False)
-
 
     def forward(self, h, m, l):
         l1 = self.relu(self.low_1(h) + m)
@@ -315,18 +256,13 @@ class SemanticSegmentationNet(nn.Module):
             ResidualBlock(64, 64),
             ResidualBlock(64, 64),
         )
-        # self.s1_p4 = nn.Sequential(
-        #     ResidualBlock(64, 64),
-        # )
 
         self.s1_p = nn.Sequential(
             ResidualBlock(64, 64),
             CBAM(64)
         )
 
-
         self.s2 = nn.Sequential(
-            # ResidualBlock(64, 64),
             DownUnit(64, 128),
         )
         self.s2_p1 = nn.Sequential(
@@ -341,16 +277,13 @@ class SemanticSegmentationNet(nn.Module):
             ResidualBlock(128, 128),
             ResidualBlock(128, 128),
         )
-        # self.s2_p4 = nn.Sequential(
-        #     ResidualBlock(128, 128),
-        # )
+
         self.s2_p = nn.Sequential(
             ResidualBlock(128, 128),
             CBAM(128)
         )
 
         self.s3 = nn.Sequential(
-            # ResidualBlock(128, 128),
             DownUnit(128, 256),
         )
         self.s3_p1 = nn.Sequential(
@@ -365,9 +298,7 @@ class SemanticSegmentationNet(nn.Module):
             ResidualBlock(256, 256),
             ResidualBlock(256, 256),
         )
-        # self.s3_p4 = nn.Sequential(
-        #     ResidualBlock(256, 256),
-        # )
+
         self.s3_p = nn.Sequential(
             ResidualBlock(256, 256),
             CBAM(256)
@@ -376,7 +307,6 @@ class SemanticSegmentationNet(nn.Module):
         self.change1 = MutiFusion(64, 128, 256)
         self.change2 = MutiFusion(64, 128, 256)
         self.change3 = MutiFusion(64, 128, 256)
-        # self.change4 = MutiFusion(64, 128, 256)
 
         self.up_mid = AttentionFusionModule(128, 256, )
         self.d_mid = ResidualBlock(128, 128)
@@ -385,13 +315,9 @@ class SemanticSegmentationNet(nn.Module):
         self.d_high = ResidualBlock(64, 64)
 
         # 输入层
-
-        # self.cbam = CBAM(128)
         self.conv = ResidualBlock(64, 64)
         self.final_layer = segmenthead(64, 128, num_classes, 8)
         self.loss1 = segmenthead(64, 128, num_classes, 8)
-        # self.loss2 = segmenthead(64, 128, num_classes)
-
 
     def forward(self, x):
         # 输入层
@@ -400,12 +326,10 @@ class SemanticSegmentationNet(nn.Module):
         x = self.s1_p2(x)
         x = self.s1_p3(x)
 
-
         xm = self.s2(x)  # [B, 256, H/16, W/16]
         xm = self.s2_p1(xm)  # [B, 256, H/16, W/16]
         xm = self.s2_p2(xm)  # [B, 256, H/16, W/16]
         xm = self.s2_p3(xm)  # [B, 256, H/16, W/16]
-
 
         xl = self.s3(xm)  # [B, 512, H/32, W/32]
         xl = self.s3_p1(xl)  # [B, 512, H/32, W/32]
@@ -415,24 +339,16 @@ class SemanticSegmentationNet(nn.Module):
         xl = self.s3_p3(xl)  # [B, 512, H/32, W/32]
         x, xm, xl = self.change3(x, xm, xl)
 
-        # x = self.s1_p4(x)
-        # xm = self.s2_p4(xm)  # [B, 256, H/16, W/16]
-        # xl = self.s3_p4(xl)  # [B, 512, H/32, W/32]
-        # x, xm, xl = self.change4(x, xm, xl)
-
         x = self.s1_p(x)
         xm = self.s2_p(xm)
         xl = self.s3_p(xl)
 
-
         xm = self.d_mid(self.up_mid(xm, xl))
         x = self.d_high(self.up_high(x, xm))
-
         x = self.conv(x)
 
         out = self.final_layer(x)
         # return out
-
         if self.aux_mode == 'train':
             loss0 = self.loss1(xtem)
             return out, loss0
@@ -446,7 +362,6 @@ class SemanticSegmentationNet(nn.Module):
 
 
 if __name__ == '__main__':
-
     # Comment batchnorms here and in model_utils before testing speed since the batchnorm could be integrated into conv operation
     # (do not comment all, just the batchnorm following its corresponding conv layer)
     device = torch.device('cuda')

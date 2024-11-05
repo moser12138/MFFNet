@@ -116,56 +116,6 @@ class AttentionFusionModule(nn.Module):
 
         return fused_feat
 
-# class AttentionFusionModule(nn.Module):
-#     def __init__(self, high_res_channels, low_res_channels, group = 32):
-#         super(AttentionFusionModule, self).__init__()
-#         self.high_1 = nn.Sequential(
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, groups=group, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=1, stride=1, padding=0, bias=False),
-#         )
-#         self.high_2 = nn.Sequential(
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=3, stride=2, padding=1, bias=False),  # 下采样
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=1, stride=1, padding=0, bias=False),
-#
-#             # nn.AvgPool2d(kernel_size=3, stride=2, padding=1, ceil_mode=False)  # 下采样1/32
-#         )
-#         self.low_1 = nn.Sequential(
-#             nn.Conv2d(in_channels=low_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#         )
-#         self.low_2 = nn.Sequential(
-#             nn.Conv2d(in_channels=low_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, groups=group, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=1, stride=1, padding=0, bias=False),
-#         )
-#         self.up1 = nn.Upsample(scale_factor=2)
-#         self.up2 = nn.Upsample(scale_factor=2)
-#
-#         self.last = nn.Sequential(
-#             nn.Conv2d(in_channels=high_res_channels, out_channels=high_res_channels, kernel_size=3, stride=1, padding=1, bias=False),
-#             nn.BatchNorm2d(high_res_channels),
-#             nn.ReLU(inplace=True),  # not shown in paper
-#         )
-#
-#     def forward(self, x_d, x_m):  #1/8,1/64
-#         xd_1 = self.high_1(x_d)
-#         xd_2 = self.high_2(x_d)
-#
-#         xm_1 = self.low_1(x_m)
-#         xm_2 = self.low_2(x_m)
-#
-#         xm_1 = self.up1(xm_1)
-#         xd = xd_1 * torch.sigmoid(xm_1)
-#
-#         xm = xd_2 * torch.sigmoid(xm_2)
-#
-#         xm = self.up2(xm)
-#
-#         out = self.last(xd + xm)
-#         return out
-
 # 多分支融合
 class MutiFusion(nn.Module):
     def __init__(self, h_channels, m_channels, l_channels):
@@ -296,7 +246,6 @@ class SemanticSegmentationNet(nn.Module):
     def __init__(self, num_classes=19, augment=True):
         super(SemanticSegmentationNet, self).__init__()
         self.augment = augment
-        # self.conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1)
 
         self.s1 = nn.Sequential(
             DownUnit(3, 32),
@@ -318,15 +267,11 @@ class SemanticSegmentationNet(nn.Module):
             ResidualBlock(64, 64),
             ResidualBlock(64, 64),
         )
-        # self.s1_p4 = nn.Sequential(
-        #     ResidualBlock(64, 64),
-        # )
 
         self.s1_p = nn.Sequential(
             ResidualBlock(64, 64),
             CBAM(64)
         )
-
 
         self.s2 = nn.Sequential(
             # ResidualBlock(64, 64),
@@ -344,16 +289,13 @@ class SemanticSegmentationNet(nn.Module):
             ResidualBlock(128, 128),
             ResidualBlock(128, 128),
         )
-        # self.s2_p4 = nn.Sequential(
-        #     ResidualBlock(128, 128),
-        # )
+
         self.s2_p = nn.Sequential(
             ResidualBlock(128, 128),
             CBAM(128)
         )
 
         self.s3 = nn.Sequential(
-            # ResidualBlock(128, 128),
             DownUnit(128, 256),
         )
         self.s3_p1 = nn.Sequential(
@@ -368,9 +310,7 @@ class SemanticSegmentationNet(nn.Module):
             ResidualBlock(256, 256),
             ResidualBlock(256, 256),
         )
-        # self.s3_p4 = nn.Sequential(
-        #     ResidualBlock(256, 256),
-        # )
+
         self.s3_p = nn.Sequential(
             ResidualBlock(256, 256),
             CBAM(256)
@@ -379,7 +319,6 @@ class SemanticSegmentationNet(nn.Module):
         self.change1 = MutiFusion(64, 128, 256)
         self.change2 = MutiFusion(64, 128, 256)
         self.change3 = MutiFusion(64, 128, 256)
-        # self.change4 = MutiFusion(64, 128, 256)
 
         self.up_mid = AttentionFusionModule(128, 256, )
         self.d_mid = ResidualBlock(128, 128)
@@ -388,13 +327,9 @@ class SemanticSegmentationNet(nn.Module):
         self.d_high = ResidualBlock(64, 64)
 
         # 输入层
-
-        # self.cbam = CBAM(128)
         self.conv = ResidualBlock(64, 64)
         self.final_layer = segmenthead(64, 128, num_classes, 8)
         self.loss1 = segmenthead(64, 128, num_classes, 8)
-        # self.loss2 = segmenthead(64, 128, num_classes)
-
 
     def forward(self, x):
         # 输入层
@@ -418,11 +353,6 @@ class SemanticSegmentationNet(nn.Module):
         xl = self.s3_p3(xl)  # [B, 512, H/32, W/32]
         x, xm, xl = self.change3(x, xm, xl)
 
-        # x = self.s1_p4(x)
-        # xm = self.s2_p4(xm)  # [B, 256, H/16, W/16]
-        # xl = self.s3_p4(xl)  # [B, 512, H/32, W/32]
-        # x, xm, xl = self.change4(x, xm, xl)
-
         x = self.s1_p(x)
         xm = self.s2_p(xm)
         xl = self.s3_p(xl)
@@ -435,7 +365,6 @@ class SemanticSegmentationNet(nn.Module):
 
         out = self.final_layer(x)
         # return out
-
         if self.augment:
             loss0 = self.loss1(xtem)
             return [loss0, out]
