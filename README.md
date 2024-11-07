@@ -33,6 +33,7 @@ Download the dataset from the official [website](http://mi.eng.cam.ac.uk/researc
 3.Check if the paths contained in lists of data/list are correct for dataset images.
 
 ## train
+Training commands I used to train the models can be found in [here](./train.sh).
 
 ## eval pretrained models
 You can evaluate a trained model like this: 
