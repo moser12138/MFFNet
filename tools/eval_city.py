@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- encoding: utf-8 -*-
-
 import sys
 sys.path.insert(0, '.')
 import os
@@ -19,15 +16,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.distributed as dist
 
-# from lib.models import model_factory
-# from lib.model_try1 import model_factory
-# from lib.model_try2 import model_factory
-# from lib.model_try3 import model_factory
-from lib.model_try4 import model_factory
+from models.MFFNet_city import SemanticSegmentationNet
 
-from configs import set_cfg_from_file
+from configs import set_cfg_from_file_city
 # from lib.logger_try3 import setup_logger
-from lib.logger_try4 import setup_logger
+from lib.logger_city import setup_logger
 from lib.data import get_data_loader
 
 
@@ -414,17 +407,9 @@ def evaluate(cfg, weight_pth):
 
     ## model
     logger.info('setup and restore model')
-    net = model_factory[cfg.model_type](cfg.n_cats)
+    net = SemanticSegmentationNet(cfg.n_cats)
     net.load_state_dict(torch.load(weight_pth, map_location='cpu'))
     net.cuda()
-
-    #  if dist.is_initialized():
-    #      local_rank = dist.get_rank()
-    #      net = nn.parallel.DistributedDataParallel(
-    #          net,
-    #          device_ids=[local_rank, ],
-    #          output_device=local_rank
-    #      )
 
     ## evaluator
     iou_heads, iou_content, f1_heads, f1_content = eval_model(cfg, net)
@@ -439,13 +424,13 @@ def parse_args():
     parse.add_argument('--weight-path', dest='weight_pth', type=str,
                        default='model_final.pth',)
     parse.add_argument('--config', dest='config', type=str,
-            default='configs/bisenetv2.py',)
+            default='configs/cityscapes.py',)
     return parse.parse_args()
 
 
 def main():
     args = parse_args()
-    cfg = set_cfg_from_file(args.config)
+    cfg = set_cfg_from_file_city(args.config)
     if 'LOCAL_RANK' in os.environ:
         local_rank = int(os.environ['LOCAL_RANK'])
         torch.cuda.set_device(local_rank)

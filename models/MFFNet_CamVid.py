@@ -373,15 +373,11 @@ class SemanticSegmentationNet(nn.Module):
 
 if __name__ == '__main__':
 
-    # Comment batchnorms here and in model_utils before testing speed since the batchnorm could be integrated into conv operation
-    # (do not comment all, just the batchnorm following its corresponding conv layer)
     device = torch.device('cuda')
     model = SemanticSegmentationNet(num_classes=19)
     model.eval()
     model.to(device)
     iterations = None
-
-    # input = torch.randn(1, 3, 1024, 2048).cuda()
     input = torch.randn(1, 3, 640, 960).cuda()
 
     with torch.no_grad():  # 上下文管理器来禁用梯度计算，从而减少内存消耗，并且不记录计算历史

@@ -1,0 +1,650 @@
+Namespace(cfg='configs/camvid/modeltry4.yaml', opts=[])
+{'AUTO_RESUME': False,
+ 'CUDNN': CfgNode({'BENCHMARK': True, 'DETERMINISTIC': False, 'ENABLED': True}),
+ 'DATASET': {'DATASET': 'camvid',
+             'EXTRA_TRAIN_SET': '',
+             'NUM_CLASSES': 11,
+             'ROOT': 'data/',
+             'TEST_SET': 'list/camvid/test.lst',
+             'TRAIN_SET': 'list/camvid/trainval.lst'},
+ 'GPUS': (0,),
+ 'LOG_DIR': 'log',
+ 'LOSS': {'BALANCE_WEIGHTS': [0.4, 1.0],
+          'CLASS_BALANCE': False,
+          'OHEMKEEP': 131072,
+          'OHEMTHRES': 0.9,
+          'SB_WEIGHTS': 1.0,
+          'USE_OHEM': True},
+ 'MODEL': {'ALIGN_CORNERS': True,
+           'NAME': 'ownmodel',
+           'NUM_OUTPUTS': 2,
+           'PRETRAINED': 'output/camvid/modeltry4/best_67_02.pt'},
+ 'OUTPUT_DIR': 'output',
+ 'PIN_MEMORY': True,
+ 'PRINT_FREQ': 10,
+ 'TEST': {'BASE_SIZE': 960,
+          'BATCH_SIZE_PER_GPU': 2,
+          'FLIP_TEST': False,
+          'IMAGE_SIZE': [960, 720],
+          'MODEL_FILE': 'output/camvid/modeltry4/MFFNet_CamVid_78_56.pt',
+          'MULTI_SCALE': False,
+          'OUTPUT_INDEX': 1},
+ 'TRAIN': {'BASE_SIZE': 960,
+           'BATCH_SIZE_PER_GPU': 12,
+           'BEGIN_EPOCH': 0,
+           'END_EPOCH': 120,
+           'EXTRA_EPOCH': 0,
+           'EXTRA_LR': 0.001,
+           'FLIP': True,
+           'IGNORE_LABEL': 255,
+           'IMAGE_SIZE': [960, 720],
+           'LR': 0.005,
+           'MOMENTUM': 0.9,
+           'MULTI_SCALE': True,
+           'NESTEROV': False,
+           'OPTIMIZER': 'sgd',
+           'RESUME': False,
+           'SCALE_FACTOR': 16,
+           'SHUFFLE': True,
+           'WD': 0.0005},
+ 'WORKERS': 3}
+ Attention!!!
+ Loaded 0 parameters!
+ Over!!!
+ => loading model from output/camvid/modeltry4/MFFNet_CamVid_78_56.pt
+ => loading s1.0.conv3.weight from pretrained model
+ => loading s1.0.conv3.bias from pretrained model
+ => loading s1.0.conv5.weight from pretrained model
+ => loading s1.0.conv5.bias from pretrained model
+ => loading s1.0.conv_fuse.weight from pretrained model
+ => loading s1.0.conv_fuse.bias from pretrained model
+ => loading s1.0.bn.weight from pretrained model
+ => loading s1.0.bn.bias from pretrained model
+ => loading s1.0.bn.running_mean from pretrained model
+ => loading s1.0.bn.running_var from pretrained model
+ => loading s1.0.bn.num_batches_tracked from pretrained model
+ => loading s1.0.residual_conv.0.weight from pretrained model
+ => loading s1.0.residual_conv.1.weight from pretrained model
+ => loading s1.0.residual_conv.1.bias from pretrained model
+ => loading s1.0.residual_conv.1.running_mean from pretrained model
+ => loading s1.0.residual_conv.1.running_var from pretrained model
+ => loading s1.0.residual_conv.1.num_batches_tracked from pretrained model
+ => loading s1.1.conv1.weight from pretrained model
+ => loading s1.1.bn1.weight from pretrained model
+ => loading s1.1.bn1.bias from pretrained model
+ => loading s1.1.bn1.running_mean from pretrained model
+ => loading s1.1.bn1.running_var from pretrained model
+ => loading s1.1.bn1.num_batches_tracked from pretrained model
+ => loading s1.1.conv2.weight from pretrained model
+ => loading s1.1.bn2.weight from pretrained model
+ => loading s1.1.bn2.bias from pretrained model
+ => loading s1.1.bn2.running_mean from pretrained model
+ => loading s1.1.bn2.running_var from pretrained model
+ => loading s1.1.bn2.num_batches_tracked from pretrained model
+ => loading s1.2.conv3.weight from pretrained model
+ => loading s1.2.conv3.bias from pretrained model
+ => loading s1.2.conv5.weight from pretrained model
+ => loading s1.2.conv5.bias from pretrained model
+ => loading s1.2.conv_fuse.weight from pretrained model
+ => loading s1.2.conv_fuse.bias from pretrained model
+ => loading s1.2.bn.weight from pretrained model
+ => loading s1.2.bn.bias from pretrained model
+ => loading s1.2.bn.running_mean from pretrained model
+ => loading s1.2.bn.running_var from pretrained model
+ => loading s1.2.bn.num_batches_tracked from pretrained model
+ => loading s1.2.residual_conv.0.weight from pretrained model
+ => loading s1.2.residual_conv.1.weight from pretrained model
+ => loading s1.2.residual_conv.1.bias from pretrained model
+ => loading s1.2.residual_conv.1.running_mean from pretrained model
+ => loading s1.2.residual_conv.1.running_var from pretrained model
+ => loading s1.2.residual_conv.1.num_batches_tracked from pretrained model
+ => loading s1.3.conv1.weight from pretrained model
+ => loading s1.3.bn1.weight from pretrained model
+ => loading s1.3.bn1.bias from pretrained model
+ => loading s1.3.bn1.running_mean from pretrained model
+ => loading s1.3.bn1.running_var from pretrained model
+ => loading s1.3.bn1.num_batches_tracked from pretrained model
+ => loading s1.3.conv2.weight from pretrained model
+ => loading s1.3.bn2.weight from pretrained model
+ => loading s1.3.bn2.bias from pretrained model
+ => loading s1.3.bn2.running_mean from pretrained model
+ => loading s1.3.bn2.running_var from pretrained model
+ => loading s1.3.bn2.num_batches_tracked from pretrained model
+ => loading s1.4.conv3.weight from pretrained model
+ => loading s1.4.conv3.bias from pretrained model
+ => loading s1.4.conv5.weight from pretrained model
+ => loading s1.4.conv5.bias from pretrained model
+ => loading s1.4.conv_fuse.weight from pretrained model
+ => loading s1.4.conv_fuse.bias from pretrained model
+ => loading s1.4.bn.weight from pretrained model
+ => loading s1.4.bn.bias from pretrained model
+ => loading s1.4.bn.running_mean from pretrained model
+ => loading s1.4.bn.running_var from pretrained model
+ => loading s1.4.bn.num_batches_tracked from pretrained model
+ => loading s1.4.residual_conv.0.weight from pretrained model
+ => loading s1.4.residual_conv.1.weight from pretrained model
+ => loading s1.4.residual_conv.1.bias from pretrained model
+ => loading s1.4.residual_conv.1.running_mean from pretrained model
+ => loading s1.4.residual_conv.1.running_var from pretrained model
+ => loading s1.4.residual_conv.1.num_batches_tracked from pretrained model
+ => loading s1_p1.0.conv1.weight from pretrained model
+ => loading s1_p1.0.bn1.weight from pretrained model
+ => loading s1_p1.0.bn1.bias from pretrained model
+ => loading s1_p1.0.bn1.running_mean from pretrained model
+ => loading s1_p1.0.bn1.running_var from pretrained model
+ => loading s1_p1.0.bn1.num_batches_tracked from pretrained model
+ => loading s1_p1.0.conv2.weight from pretrained model
+ => loading s1_p1.0.bn2.weight from pretrained model
+ => loading s1_p1.0.bn2.bias from pretrained model
+ => loading s1_p1.0.bn2.running_mean from pretrained model
+ => loading s1_p1.0.bn2.running_var from pretrained model
+ => loading s1_p1.0.bn2.num_batches_tracked from pretrained model
+ => loading s1_p1.1.conv1.weight from pretrained model
+ => loading s1_p1.1.bn1.weight from pretrained model
+ => loading s1_p1.1.bn1.bias from pretrained model
+ => loading s1_p1.1.bn1.running_mean from pretrained model
+ => loading s1_p1.1.bn1.running_var from pretrained model
+ => loading s1_p1.1.bn1.num_batches_tracked from pretrained model
+ => loading s1_p1.1.conv2.weight from pretrained model
+ => loading s1_p1.1.bn2.weight from pretrained model
+ => loading s1_p1.1.bn2.bias from pretrained model
+ => loading s1_p1.1.bn2.running_mean from pretrained model
+ => loading s1_p1.1.bn2.running_var from pretrained model
+ => loading s1_p1.1.bn2.num_batches_tracked from pretrained model
+ => loading s1_p2.0.conv1.weight from pretrained model
+ => loading s1_p2.0.bn1.weight from pretrained model
+ => loading s1_p2.0.bn1.bias from pretrained model
+ => loading s1_p2.0.bn1.running_mean from pretrained model
+ => loading s1_p2.0.bn1.running_var from pretrained model
+ => loading s1_p2.0.bn1.num_batches_tracked from pretrained model
+ => loading s1_p2.0.conv2.weight from pretrained model
+ => loading s1_p2.0.bn2.weight from pretrained model
+ => loading s1_p2.0.bn2.bias from pretrained model
+ => loading s1_p2.0.bn2.running_mean from pretrained model
+ => loading s1_p2.0.bn2.running_var from pretrained model
+ => loading s1_p2.0.bn2.num_batches_tracked from pretrained model
+ => loading s1_p2.1.conv1.weight from pretrained model
+ => loading s1_p2.1.bn1.weight from pretrained model
+ => loading s1_p2.1.bn1.bias from pretrained model
+ => loading s1_p2.1.bn1.running_mean from pretrained model
+ => loading s1_p2.1.bn1.running_var from pretrained model
+ => loading s1_p2.1.bn1.num_batches_tracked from pretrained model
+ => loading s1_p2.1.conv2.weight from pretrained model
+ => loading s1_p2.1.bn2.weight from pretrained model
+ => loading s1_p2.1.bn2.bias from pretrained model
+ => loading s1_p2.1.bn2.running_mean from pretrained model
+ => loading s1_p2.1.bn2.running_var from pretrained model
+ => loading s1_p2.1.bn2.num_batches_tracked from pretrained model
+ => loading s1_p3.0.conv1.weight from pretrained model
+ => loading s1_p3.0.bn1.weight from pretrained model
+ => loading s1_p3.0.bn1.bias from pretrained model
+ => loading s1_p3.0.bn1.running_mean from pretrained model
+ => loading s1_p3.0.bn1.running_var from pretrained model
+ => loading s1_p3.0.bn1.num_batches_tracked from pretrained model
+ => loading s1_p3.0.conv2.weight from pretrained model
+ => loading s1_p3.0.bn2.weight from pretrained model
+ => loading s1_p3.0.bn2.bias from pretrained model
+ => loading s1_p3.0.bn2.running_mean from pretrained model
+ => loading s1_p3.0.bn2.running_var from pretrained model
+ => loading s1_p3.0.bn2.num_batches_tracked from pretrained model
+ => loading s1_p3.1.conv1.weight from pretrained model
+ => loading s1_p3.1.bn1.weight from pretrained model
+ => loading s1_p3.1.bn1.bias from pretrained model
+ => loading s1_p3.1.bn1.running_mean from pretrained model
+ => loading s1_p3.1.bn1.running_var from pretrained model
+ => loading s1_p3.1.bn1.num_batches_tracked from pretrained model
+ => loading s1_p3.1.conv2.weight from pretrained model
+ => loading s1_p3.1.bn2.weight from pretrained model
+ => loading s1_p3.1.bn2.bias from pretrained model
+ => loading s1_p3.1.bn2.running_mean from pretrained model
+ => loading s1_p3.1.bn2.running_var from pretrained model
+ => loading s1_p3.1.bn2.num_batches_tracked from pretrained model
+ => loading s1_p.0.conv1.weight from pretrained model
+ => loading s1_p.0.bn1.weight from pretrained model
+ => loading s1_p.0.bn1.bias from pretrained model
+ => loading s1_p.0.bn1.running_mean from pretrained model
+ => loading s1_p.0.bn1.running_var from pretrained model
+ => loading s1_p.0.bn1.num_batches_tracked from pretrained model
+ => loading s1_p.0.conv2.weight from pretrained model
+ => loading s1_p.0.bn2.weight from pretrained model
+ => loading s1_p.0.bn2.bias from pretrained model
+ => loading s1_p.0.bn2.running_mean from pretrained model
+ => loading s1_p.0.bn2.running_var from pretrained model
+ => loading s1_p.0.bn2.num_batches_tracked from pretrained model
+ => loading s1_p.1.channel_attention.fc1.weight from pretrained model
+ => loading s1_p.1.channel_attention.fc1.bias from pretrained model
+ => loading s1_p.1.channel_attention.fc2.weight from pretrained model
+ => loading s1_p.1.channel_attention.fc2.bias from pretrained model
+ => loading s1_p.1.spatial_attention.conv1.weight from pretrained model
+ => loading s1_p.1.spatial_attention.conv1.bias from pretrained model
+ => loading s2.0.conv3.weight from pretrained model
+ => loading s2.0.conv3.bias from pretrained model
+ => loading s2.0.conv5.weight from pretrained model
+ => loading s2.0.conv5.bias from pretrained model
+ => loading s2.0.conv_fuse.weight from pretrained model
+ => loading s2.0.conv_fuse.bias from pretrained model
+ => loading s2.0.bn.weight from pretrained model
+ => loading s2.0.bn.bias from pretrained model
+ => loading s2.0.bn.running_mean from pretrained model
+ => loading s2.0.bn.running_var from pretrained model
+ => loading s2.0.bn.num_batches_tracked from pretrained model
+ => loading s2.0.residual_conv.0.weight from pretrained model
+ => loading s2.0.residual_conv.1.weight from pretrained model
+ => loading s2.0.residual_conv.1.bias from pretrained model
+ => loading s2.0.residual_conv.1.running_mean from pretrained model
+ => loading s2.0.residual_conv.1.running_var from pretrained model
+ => loading s2.0.residual_conv.1.num_batches_tracked from pretrained model
+ => loading s2_p1.0.conv1.weight from pretrained model
+ => loading s2_p1.0.bn1.weight from pretrained model
+ => loading s2_p1.0.bn1.bias from pretrained model
+ => loading s2_p1.0.bn1.running_mean from pretrained model
+ => loading s2_p1.0.bn1.running_var from pretrained model
+ => loading s2_p1.0.bn1.num_batches_tracked from pretrained model
+ => loading s2_p1.0.conv2.weight from pretrained model
+ => loading s2_p1.0.bn2.weight from pretrained model
+ => loading s2_p1.0.bn2.bias from pretrained model
+ => loading s2_p1.0.bn2.running_mean from pretrained model
+ => loading s2_p1.0.bn2.running_var from pretrained model
+ => loading s2_p1.0.bn2.num_batches_tracked from pretrained model
+ => loading s2_p1.1.conv1.weight from pretrained model
+ => loading s2_p1.1.bn1.weight from pretrained model
+ => loading s2_p1.1.bn1.bias from pretrained model
+ => loading s2_p1.1.bn1.running_mean from pretrained model
+ => loading s2_p1.1.bn1.running_var from pretrained model
+ => loading s2_p1.1.bn1.num_batches_tracked from pretrained model
+ => loading s2_p1.1.conv2.weight from pretrained model
+ => loading s2_p1.1.bn2.weight from pretrained model
+ => loading s2_p1.1.bn2.bias from pretrained model
+ => loading s2_p1.1.bn2.running_mean from pretrained model
+ => loading s2_p1.1.bn2.running_var from pretrained model
+ => loading s2_p1.1.bn2.num_batches_tracked from pretrained model
+ => loading s2_p2.0.conv1.weight from pretrained model
+ => loading s2_p2.0.bn1.weight from pretrained model
+ => loading s2_p2.0.bn1.bias from pretrained model
+ => loading s2_p2.0.bn1.running_mean from pretrained model
+ => loading s2_p2.0.bn1.running_var from pretrained model
+ => loading s2_p2.0.bn1.num_batches_tracked from pretrained model
+ => loading s2_p2.0.conv2.weight from pretrained model
+ => loading s2_p2.0.bn2.weight from pretrained model
+ => loading s2_p2.0.bn2.bias from pretrained model
+ => loading s2_p2.0.bn2.running_mean from pretrained model
+ => loading s2_p2.0.bn2.running_var from pretrained model
+ => loading s2_p2.0.bn2.num_batches_tracked from pretrained model
+ => loading s2_p2.1.conv1.weight from pretrained model
+ => loading s2_p2.1.bn1.weight from pretrained model
+ => loading s2_p2.1.bn1.bias from pretrained model
+ => loading s2_p2.1.bn1.running_mean from pretrained model
+ => loading s2_p2.1.bn1.running_var from pretrained model
+ => loading s2_p2.1.bn1.num_batches_tracked from pretrained model
+ => loading s2_p2.1.conv2.weight from pretrained model
+ => loading s2_p2.1.bn2.weight from pretrained model
+ => loading s2_p2.1.bn2.bias from pretrained model
+ => loading s2_p2.1.bn2.running_mean from pretrained model
+ => loading s2_p2.1.bn2.running_var from pretrained model
+ => loading s2_p2.1.bn2.num_batches_tracked from pretrained model
+ => loading s2_p3.0.conv1.weight from pretrained model
+ => loading s2_p3.0.bn1.weight from pretrained model
+ => loading s2_p3.0.bn1.bias from pretrained model
+ => loading s2_p3.0.bn1.running_mean from pretrained model
+ => loading s2_p3.0.bn1.running_var from pretrained model
+ => loading s2_p3.0.bn1.num_batches_tracked from pretrained model
+ => loading s2_p3.0.conv2.weight from pretrained model
+ => loading s2_p3.0.bn2.weight from pretrained model
+ => loading s2_p3.0.bn2.bias from pretrained model
+ => loading s2_p3.0.bn2.running_mean from pretrained model
+ => loading s2_p3.0.bn2.running_var from pretrained model
+ => loading s2_p3.0.bn2.num_batches_tracked from pretrained model
+ => loading s2_p3.1.conv1.weight from pretrained model
+ => loading s2_p3.1.bn1.weight from pretrained model
+ => loading s2_p3.1.bn1.bias from pretrained model
+ => loading s2_p3.1.bn1.running_mean from pretrained model
+ => loading s2_p3.1.bn1.running_var from pretrained model
+ => loading s2_p3.1.bn1.num_batches_tracked from pretrained model
+ => loading s2_p3.1.conv2.weight from pretrained model
+ => loading s2_p3.1.bn2.weight from pretrained model
+ => loading s2_p3.1.bn2.bias from pretrained model
+ => loading s2_p3.1.bn2.running_mean from pretrained model
+ => loading s2_p3.1.bn2.running_var from pretrained model
+ => loading s2_p3.1.bn2.num_batches_tracked from pretrained model
+ => loading s2_p.0.conv1.weight from pretrained model
+ => loading s2_p.0.bn1.weight from pretrained model
+ => loading s2_p.0.bn1.bias from pretrained model
+ => loading s2_p.0.bn1.running_mean from pretrained model
+ => loading s2_p.0.bn1.running_var from pretrained model
+ => loading s2_p.0.bn1.num_batches_tracked from pretrained model
+ => loading s2_p.0.conv2.weight from pretrained model
+ => loading s2_p.0.bn2.weight from pretrained model
+ => loading s2_p.0.bn2.bias from pretrained model
+ => loading s2_p.0.bn2.running_mean from pretrained model
+ => loading s2_p.0.bn2.running_var from pretrained model
+ => loading s2_p.0.bn2.num_batches_tracked from pretrained model
+ => loading s2_p.1.channel_attention.fc1.weight from pretrained model
+ => loading s2_p.1.channel_attention.fc1.bias from pretrained model
+ => loading s2_p.1.channel_attention.fc2.weight from pretrained model
+ => loading s2_p.1.channel_attention.fc2.bias from pretrained model
+ => loading s2_p.1.spatial_attention.conv1.weight from pretrained model
+ => loading s2_p.1.spatial_attention.conv1.bias from pretrained model
+ => loading s3.0.conv3.weight from pretrained model
+ => loading s3.0.conv3.bias from pretrained model
+ => loading s3.0.conv5.weight from pretrained model
+ => loading s3.0.conv5.bias from pretrained model
+ => loading s3.0.conv_fuse.weight from pretrained model
+ => loading s3.0.conv_fuse.bias from pretrained model
+ => loading s3.0.bn.weight from pretrained model
+ => loading s3.0.bn.bias from pretrained model
+ => loading s3.0.bn.running_mean from pretrained model
+ => loading s3.0.bn.running_var from pretrained model
+ => loading s3.0.bn.num_batches_tracked from pretrained model
+ => loading s3.0.residual_conv.0.weight from pretrained model
+ => loading s3.0.residual_conv.1.weight from pretrained model
+ => loading s3.0.residual_conv.1.bias from pretrained model
+ => loading s3.0.residual_conv.1.running_mean from pretrained model
+ => loading s3.0.residual_conv.1.running_var from pretrained model
+ => loading s3.0.residual_conv.1.num_batches_tracked from pretrained model
+ => loading s3_p1.0.conv1.weight from pretrained model
+ => loading s3_p1.0.bn1.weight from pretrained model
+ => loading s3_p1.0.bn1.bias from pretrained model
+ => loading s3_p1.0.bn1.running_mean from pretrained model
+ => loading s3_p1.0.bn1.running_var from pretrained model
+ => loading s3_p1.0.bn1.num_batches_tracked from pretrained model
+ => loading s3_p1.0.conv2.weight from pretrained model
+ => loading s3_p1.0.bn2.weight from pretrained model
+ => loading s3_p1.0.bn2.bias from pretrained model
+ => loading s3_p1.0.bn2.running_mean from pretrained model
+ => loading s3_p1.0.bn2.running_var from pretrained model
+ => loading s3_p1.0.bn2.num_batches_tracked from pretrained model
+ => loading s3_p1.1.conv1.weight from pretrained model
+ => loading s3_p1.1.bn1.weight from pretrained model
+ => loading s3_p1.1.bn1.bias from pretrained model
+ => loading s3_p1.1.bn1.running_mean from pretrained model
+ => loading s3_p1.1.bn1.running_var from pretrained model
+ => loading s3_p1.1.bn1.num_batches_tracked from pretrained model
+ => loading s3_p1.1.conv2.weight from pretrained model
+ => loading s3_p1.1.bn2.weight from pretrained model
+ => loading s3_p1.1.bn2.bias from pretrained model
+ => loading s3_p1.1.bn2.running_mean from pretrained model
+ => loading s3_p1.1.bn2.running_var from pretrained model
+ => loading s3_p1.1.bn2.num_batches_tracked from pretrained model
+ => loading s3_p2.0.conv1.weight from pretrained model
+ => loading s3_p2.0.bn1.weight from pretrained model
+ => loading s3_p2.0.bn1.bias from pretrained model
+ => loading s3_p2.0.bn1.running_mean from pretrained model
+ => loading s3_p2.0.bn1.running_var from pretrained model
+ => loading s3_p2.0.bn1.num_batches_tracked from pretrained model
+ => loading s3_p2.0.conv2.weight from pretrained model
+ => loading s3_p2.0.bn2.weight from pretrained model
+ => loading s3_p2.0.bn2.bias from pretrained model
+ => loading s3_p2.0.bn2.running_mean from pretrained model
+ => loading s3_p2.0.bn2.running_var from pretrained model
+ => loading s3_p2.0.bn2.num_batches_tracked from pretrained model
+ => loading s3_p2.1.conv1.weight from pretrained model
+ => loading s3_p2.1.bn1.weight from pretrained model
+ => loading s3_p2.1.bn1.bias from pretrained model
+ => loading s3_p2.1.bn1.running_mean from pretrained model
+ => loading s3_p2.1.bn1.running_var from pretrained model
+ => loading s3_p2.1.bn1.num_batches_tracked from pretrained model
+ => loading s3_p2.1.conv2.weight from pretrained model
+ => loading s3_p2.1.bn2.weight from pretrained model
+ => loading s3_p2.1.bn2.bias from pretrained model
+ => loading s3_p2.1.bn2.running_mean from pretrained model
+ => loading s3_p2.1.bn2.running_var from pretrained model
+ => loading s3_p2.1.bn2.num_batches_tracked from pretrained model
+ => loading s3_p3.0.conv1.weight from pretrained model
+ => loading s3_p3.0.bn1.weight from pretrained model
+ => loading s3_p3.0.bn1.bias from pretrained model
+ => loading s3_p3.0.bn1.running_mean from pretrained model
+ => loading s3_p3.0.bn1.running_var from pretrained model
+ => loading s3_p3.0.bn1.num_batches_tracked from pretrained model
+ => loading s3_p3.0.conv2.weight from pretrained model
+ => loading s3_p3.0.bn2.weight from pretrained model
+ => loading s3_p3.0.bn2.bias from pretrained model
+ => loading s3_p3.0.bn2.running_mean from pretrained model
+ => loading s3_p3.0.bn2.running_var from pretrained model
+ => loading s3_p3.0.bn2.num_batches_tracked from pretrained model
+ => loading s3_p3.1.conv1.weight from pretrained model
+ => loading s3_p3.1.bn1.weight from pretrained model
+ => loading s3_p3.1.bn1.bias from pretrained model
+ => loading s3_p3.1.bn1.running_mean from pretrained model
+ => loading s3_p3.1.bn1.running_var from pretrained model
+ => loading s3_p3.1.bn1.num_batches_tracked from pretrained model
+ => loading s3_p3.1.conv2.weight from pretrained model
+ => loading s3_p3.1.bn2.weight from pretrained model
+ => loading s3_p3.1.bn2.bias from pretrained model
+ => loading s3_p3.1.bn2.running_mean from pretrained model
+ => loading s3_p3.1.bn2.running_var from pretrained model
+ => loading s3_p3.1.bn2.num_batches_tracked from pretrained model
+ => loading s3_p.0.conv1.weight from pretrained model
+ => loading s3_p.0.bn1.weight from pretrained model
+ => loading s3_p.0.bn1.bias from pretrained model
+ => loading s3_p.0.bn1.running_mean from pretrained model
+ => loading s3_p.0.bn1.running_var from pretrained model
+ => loading s3_p.0.bn1.num_batches_tracked from pretrained model
+ => loading s3_p.0.conv2.weight from pretrained model
+ => loading s3_p.0.bn2.weight from pretrained model
+ => loading s3_p.0.bn2.bias from pretrained model
+ => loading s3_p.0.bn2.running_mean from pretrained model
+ => loading s3_p.0.bn2.running_var from pretrained model
+ => loading s3_p.0.bn2.num_batches_tracked from pretrained model
+ => loading s3_p.1.channel_attention.fc1.weight from pretrained model
+ => loading s3_p.1.channel_attention.fc1.bias from pretrained model
+ => loading s3_p.1.channel_attention.fc2.weight from pretrained model
+ => loading s3_p.1.channel_attention.fc2.bias from pretrained model
+ => loading s3_p.1.spatial_attention.conv1.weight from pretrained model
+ => loading s3_p.1.spatial_attention.conv1.bias from pretrained model
+ => loading change1.low_1.0.weight from pretrained model
+ => loading change1.low_1.1.weight from pretrained model
+ => loading change1.low_1.1.bias from pretrained model
+ => loading change1.low_1.1.running_mean from pretrained model
+ => loading change1.low_1.1.running_var from pretrained model
+ => loading change1.low_1.1.num_batches_tracked from pretrained model
+ => loading change1.low_2.0.weight from pretrained model
+ => loading change1.low_2.1.weight from pretrained model
+ => loading change1.low_2.1.bias from pretrained model
+ => loading change1.low_2.1.running_mean from pretrained model
+ => loading change1.low_2.1.running_var from pretrained model
+ => loading change1.low_2.1.num_batches_tracked from pretrained model
+ => loading change1.mid_1.0.weight from pretrained model
+ => loading change1.mid_1.1.weight from pretrained model
+ => loading change1.mid_1.1.bias from pretrained model
+ => loading change1.mid_1.1.running_mean from pretrained model
+ => loading change1.mid_1.1.running_var from pretrained model
+ => loading change1.mid_1.1.num_batches_tracked from pretrained model
+ => loading change1.mid_2.0.weight from pretrained model
+ => loading change1.mid_2.1.weight from pretrained model
+ => loading change1.mid_2.1.bias from pretrained model
+ => loading change1.mid_2.1.running_mean from pretrained model
+ => loading change1.mid_2.1.running_var from pretrained model
+ => loading change1.mid_2.1.num_batches_tracked from pretrained model
+ => loading change1.high_1.0.weight from pretrained model
+ => loading change1.high_1.1.weight from pretrained model
+ => loading change1.high_1.1.bias from pretrained model
+ => loading change1.high_1.1.running_mean from pretrained model
+ => loading change1.high_1.1.running_var from pretrained model
+ => loading change1.high_1.1.num_batches_tracked from pretrained model
+ => loading change1.high_2.0.weight from pretrained model
+ => loading change1.high_2.1.weight from pretrained model
+ => loading change1.high_2.1.bias from pretrained model
+ => loading change1.high_2.1.running_mean from pretrained model
+ => loading change1.high_2.1.running_var from pretrained model
+ => loading change1.high_2.1.num_batches_tracked from pretrained model
+ => loading change2.low_1.0.weight from pretrained model
+ => loading change2.low_1.1.weight from pretrained model
+ => loading change2.low_1.1.bias from pretrained model
+ => loading change2.low_1.1.running_mean from pretrained model
+ => loading change2.low_1.1.running_var from pretrained model
+ => loading change2.low_1.1.num_batches_tracked from pretrained model
+ => loading change2.low_2.0.weight from pretrained model
+ => loading change2.low_2.1.weight from pretrained model
+ => loading change2.low_2.1.bias from pretrained model
+ => loading change2.low_2.1.running_mean from pretrained model
+ => loading change2.low_2.1.running_var from pretrained model
+ => loading change2.low_2.1.num_batches_tracked from pretrained model
+ => loading change2.mid_1.0.weight from pretrained model
+ => loading change2.mid_1.1.weight from pretrained model
+ => loading change2.mid_1.1.bias from pretrained model
+ => loading change2.mid_1.1.running_mean from pretrained model
+ => loading change2.mid_1.1.running_var from pretrained model
+ => loading change2.mid_1.1.num_batches_tracked from pretrained model
+ => loading change2.mid_2.0.weight from pretrained model
+ => loading change2.mid_2.1.weight from pretrained model
+ => loading change2.mid_2.1.bias from pretrained model
+ => loading change2.mid_2.1.running_mean from pretrained model
+ => loading change2.mid_2.1.running_var from pretrained model
+ => loading change2.mid_2.1.num_batches_tracked from pretrained model
+ => loading change2.high_1.0.weight from pretrained model
+ => loading change2.high_1.1.weight from pretrained model
+ => loading change2.high_1.1.bias from pretrained model
+ => loading change2.high_1.1.running_mean from pretrained model
+ => loading change2.high_1.1.running_var from pretrained model
+ => loading change2.high_1.1.num_batches_tracked from pretrained model
+ => loading change2.high_2.0.weight from pretrained model
+ => loading change2.high_2.1.weight from pretrained model
+ => loading change2.high_2.1.bias from pretrained model
+ => loading change2.high_2.1.running_mean from pretrained model
+ => loading change2.high_2.1.running_var from pretrained model
+ => loading change2.high_2.1.num_batches_tracked from pretrained model
+ => loading change3.low_1.0.weight from pretrained model
+ => loading change3.low_1.1.weight from pretrained model
+ => loading change3.low_1.1.bias from pretrained model
+ => loading change3.low_1.1.running_mean from pretrained model
+ => loading change3.low_1.1.running_var from pretrained model
+ => loading change3.low_1.1.num_batches_tracked from pretrained model
+ => loading change3.low_2.0.weight from pretrained model
+ => loading change3.low_2.1.weight from pretrained model
+ => loading change3.low_2.1.bias from pretrained model
+ => loading change3.low_2.1.running_mean from pretrained model
+ => loading change3.low_2.1.running_var from pretrained model
+ => loading change3.low_2.1.num_batches_tracked from pretrained model
+ => loading change3.mid_1.0.weight from pretrained model
+ => loading change3.mid_1.1.weight from pretrained model
+ => loading change3.mid_1.1.bias from pretrained model
+ => loading change3.mid_1.1.running_mean from pretrained model
+ => loading change3.mid_1.1.running_var from pretrained model
+ => loading change3.mid_1.1.num_batches_tracked from pretrained model
+ => loading change3.mid_2.0.weight from pretrained model
+ => loading change3.mid_2.1.weight from pretrained model
+ => loading change3.mid_2.1.bias from pretrained model
+ => loading change3.mid_2.1.running_mean from pretrained model
+ => loading change3.mid_2.1.running_var from pretrained model
+ => loading change3.mid_2.1.num_batches_tracked from pretrained model
+ => loading change3.high_1.0.weight from pretrained model
+ => loading change3.high_1.1.weight from pretrained model
+ => loading change3.high_1.1.bias from pretrained model
+ => loading change3.high_1.1.running_mean from pretrained model
+ => loading change3.high_1.1.running_var from pretrained model
+ => loading change3.high_1.1.num_batches_tracked from pretrained model
+ => loading change3.high_2.0.weight from pretrained model
+ => loading change3.high_2.1.weight from pretrained model
+ => loading change3.high_2.1.bias from pretrained model
+ => loading change3.high_2.1.running_mean from pretrained model
+ => loading change3.high_2.1.running_var from pretrained model
+ => loading change3.high_2.1.num_batches_tracked from pretrained model
+ => loading up_mid.conv_low_res.weight from pretrained model
+ => loading up_mid.conv_low_res.bias from pretrained model
+ => loading up_mid.attention.0.weight from pretrained model
+ => loading up_mid.attention.0.bias from pretrained model
+ => loading up_mid.attention.1.weight from pretrained model
+ => loading up_mid.attention.1.bias from pretrained model
+ => loading up_mid.attention.1.running_mean from pretrained model
+ => loading up_mid.attention.1.running_var from pretrained model
+ => loading up_mid.attention.1.num_batches_tracked from pretrained model
+ => loading up_mid.attention.3.weight from pretrained model
+ => loading up_mid.attention.3.bias from pretrained model
+ => loading up_mid.final.0.weight from pretrained model
+ => loading up_mid.final.0.bias from pretrained model
+ => loading up_mid.final.1.weight from pretrained model
+ => loading up_mid.final.1.bias from pretrained model
+ => loading up_mid.final.1.running_mean from pretrained model
+ => loading up_mid.final.1.running_var from pretrained model
+ => loading up_mid.final.1.num_batches_tracked from pretrained model
+ => loading d_mid.conv1.weight from pretrained model
+ => loading d_mid.bn1.weight from pretrained model
+ => loading d_mid.bn1.bias from pretrained model
+ => loading d_mid.bn1.running_mean from pretrained model
+ => loading d_mid.bn1.running_var from pretrained model
+ => loading d_mid.bn1.num_batches_tracked from pretrained model
+ => loading d_mid.conv2.weight from pretrained model
+ => loading d_mid.bn2.weight from pretrained model
+ => loading d_mid.bn2.bias from pretrained model
+ => loading d_mid.bn2.running_mean from pretrained model
+ => loading d_mid.bn2.running_var from pretrained model
+ => loading d_mid.bn2.num_batches_tracked from pretrained model
+ => loading up_high.conv_low_res.weight from pretrained model
+ => loading up_high.conv_low_res.bias from pretrained model
+ => loading up_high.attention.0.weight from pretrained model
+ => loading up_high.attention.0.bias from pretrained model
+ => loading up_high.attention.1.weight from pretrained model
+ => loading up_high.attention.1.bias from pretrained model
+ => loading up_high.attention.1.running_mean from pretrained model
+ => loading up_high.attention.1.running_var from pretrained model
+ => loading up_high.attention.1.num_batches_tracked from pretrained model
+ => loading up_high.attention.3.weight from pretrained model
+ => loading up_high.attention.3.bias from pretrained model
+ => loading up_high.final.0.weight from pretrained model
+ => loading up_high.final.0.bias from pretrained model
+ => loading up_high.final.1.weight from pretrained model
+ => loading up_high.final.1.bias from pretrained model
+ => loading up_high.final.1.running_mean from pretrained model
+ => loading up_high.final.1.running_var from pretrained model
+ => loading up_high.final.1.num_batches_tracked from pretrained model
+ => loading d_high.conv1.weight from pretrained model
+ => loading d_high.bn1.weight from pretrained model
+ => loading d_high.bn1.bias from pretrained model
+ => loading d_high.bn1.running_mean from pretrained model
+ => loading d_high.bn1.running_var from pretrained model
+ => loading d_high.bn1.num_batches_tracked from pretrained model
+ => loading d_high.conv2.weight from pretrained model
+ => loading d_high.bn2.weight from pretrained model
+ => loading d_high.bn2.bias from pretrained model
+ => loading d_high.bn2.running_mean from pretrained model
+ => loading d_high.bn2.running_var from pretrained model
+ => loading d_high.bn2.num_batches_tracked from pretrained model
+ => loading conv.conv1.weight from pretrained model
+ => loading conv.bn1.weight from pretrained model
+ => loading conv.bn1.bias from pretrained model
+ => loading conv.bn1.running_mean from pretrained model
+ => loading conv.bn1.running_var from pretrained model
+ => loading conv.bn1.num_batches_tracked from pretrained model
+ => loading conv.conv2.weight from pretrained model
+ => loading conv.bn2.weight from pretrained model
+ => loading conv.bn2.bias from pretrained model
+ => loading conv.bn2.running_mean from pretrained model
+ => loading conv.bn2.running_var from pretrained model
+ => loading conv.bn2.num_batches_tracked from pretrained model
+ => loading final_layer.bn1.weight from pretrained model
+ => loading final_layer.bn1.bias from pretrained model
+ => loading final_layer.bn1.running_mean from pretrained model
+ => loading final_layer.bn1.running_var from pretrained model
+ => loading final_layer.bn1.num_batches_tracked from pretrained model
+ => loading final_layer.conv1.weight from pretrained model
+ => loading final_layer.bn2.weight from pretrained model
+ => loading final_layer.bn2.bias from pretrained model
+ => loading final_layer.bn2.running_mean from pretrained model
+ => loading final_layer.bn2.running_var from pretrained model
+ => loading final_layer.bn2.num_batches_tracked from pretrained model
+ => loading final_layer.conv2.weight from pretrained model
+ => loading final_layer.conv2.bias from pretrained model
+ => loading loss1.bn1.weight from pretrained model
+ => loading loss1.bn1.bias from pretrained model
+ => loading loss1.bn1.running_mean from pretrained model
+ => loading loss1.bn1.running_var from pretrained model
+ => loading loss1.bn1.num_batches_tracked from pretrained model
+ => loading loss1.conv1.weight from pretrained model
+ => loading loss1.bn2.weight from pretrained model
+ => loading loss1.bn2.bias from pretrained model
+ => loading loss1.bn2.running_mean from pretrained model
+ => loading loss1.bn2.running_var from pretrained model
+ => loading loss1.bn2.num_batches_tracked from pretrained model
+ => loading loss1.conv2.weight from pretrained model
+ => loading loss1.conv2.bias from pretrained model
+ processing: 0 images
+ mIoU: 0.6776
+ processing: 100 images
+ mIoU: 0.7070
+ processing: 200 images
+ mIoU: 0.7772
+ MeanIU:  0.7856, Pixel_Acc:  0.9496,             Mean_Acc:  0.8563, Class IoU:
+ [0.71951434 0.90413424 0.92734011 0.45867165 0.68213907 0.68320251
+ 0.97221593 0.92294527 0.6339973  0.93130242 0.80661973]
+Mins: 0
+Done
