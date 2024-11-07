@@ -1,7 +1,6 @@
 # MFFNet
 code for MFFNet
-Our model is provided in the 'models' folder, and the visualization code for the results on two datasets is provided in the 'tools' folder. The pre-trained model parameters are available for download in the [DownLoad](https://drive.google.com/drive/folders/1CA0phChbpck5SqF5xWE-ufXy4bPmcCOG?usp=sharing) section.
-
+Our model is provided in the 'models' folder, and the visualization code for the results on two datasets is provided in the 'tools' folder. 
 ## platform
 
 My platform is like this: 
@@ -12,6 +11,9 @@ My platform is like this:
 * cudnn 8
 * miniconda python 3.8.8
 * pytorch 1.11.0
+
+## Models
+The finetuned model parameters are available for download in the [DownLoad](https://drive.google.com/drive/folders/1CA0phChbpck5SqF5xWE-ufXy4bPmcCOG?usp=sharing) section.
 
 ## prepare dataset
 1.cityscapes  
@@ -41,3 +43,4 @@ or
 ```
 $ python tools/eval_camvid.py --cfg configs/camvid.yaml
 ```
+
