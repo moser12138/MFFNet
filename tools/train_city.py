@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- encoding: utf-8 -*-
-
 import sys
 sys.path.insert(0, '.')
 import os
@@ -26,7 +23,7 @@ from lib.ohem_ce_loss import OhemCELoss
 from lib.lr_scheduler import WarmupPolyLrScheduler
 from lib.meters import TimeMeter, AvgMeter
 from lib.logger_city import setup_logger, print_log_msg
-from models.MFFNet_city import SemanticSegmentationNet
+from models.MFFNet import SemanticSegmentationNet
 
 def parse_args():
     parse = argparse.ArgumentParser()
