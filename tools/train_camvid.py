@@ -20,7 +20,7 @@ from configs import update_config
 from utils.criterion import CrossEntropy, OhemCrossEntropy
 from utils.function import train, validate
 from utils.utils import create_logger, FullModel
-from models.MFFNet_city import SemanticSegmentationNet
+from models.MFFNet import SemanticSegmentationNet
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train segmentation network')
