@@ -1,6 +1,3 @@
-# ------------------------------------------------------------------------------
-# Modified based on https://github.com/HRNet/HRNet-Semantic-Segmentation
-# ------------------------------------------------------------------------------
 # python tools/eval_camvid.py --cfg configs/camvid.yaml
 
 import argparse
@@ -21,7 +18,7 @@ from configs import config
 from configs import update_config
 from utils.function import testval, test
 from utils.utils import create_logger
-from models.MFFNet_CamVid import SemanticSegmentationNet
+from models.MFFNet import SemanticSegmentationNet
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train segmentation network')
