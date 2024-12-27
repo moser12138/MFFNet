@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.distributed as dist
 
-from models.MFFNet_city import SemanticSegmentationNet
+from models.MFFNet import SemanticSegmentationNet
 
 from configs import set_cfg_from_file_city
 # from lib.logger_try3 import setup_logger
